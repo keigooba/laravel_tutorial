@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use App\Folder;
-use App\Http\Requests\CreateFolder; // ★ 追加
+use App\Http\Requests\CreateFolder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
 {
@@ -20,9 +20,8 @@ class FolderController extends Controller
         $folder = new Folder();
         // タイトルに入力値を代入する
         $folder->title = $request->title;
-        // // インスタンスの状態をデータベースに書き込む
-        // $folder->save();
-          // ★ ユーザーに紐づけて保存
+
+        // インスタンスの状態をデータベースに書き込む
         Auth::user()->folders()->save($folder);
 
         return redirect()->route('tasks.index', [

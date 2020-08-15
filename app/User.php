@@ -1,11 +1,11 @@
 <?php
 
-namespace App\models;
+namespace App;
 
+use App\Mail\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
@@ -33,11 +33,6 @@ class User extends Authenticatable
     public function folders()
     {
         return $this->hasMany('App\Folder');
-    }
-
-    public function comments()
-    {
-        return $this->hasMany('App\Models\Comment');
     }
 
     public function sendPasswordResetNotification($token)
